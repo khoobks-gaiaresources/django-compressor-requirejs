@@ -16,7 +16,7 @@ from compressor.filters.base import FilterBase
 
 from .finder import ModuleFinder
 from .utils import get_installed_app_labels, get_app_template_dirs
-from .js import JsCompressor
+
 
 define_replace_pattern = re.compile(r'define\s*\(([^\)]*?)\)')
 
@@ -119,6 +119,7 @@ class RequireJSCompiler(FilterBase):
         Leverage django-compressor's JsCompressor to write the Javascript, making use of configured filters
         and other settings.
         """
+        from .js import JsCompressor
         # Compress it
         compressor = JsCompressor()
         filtered = compressor.filter(content, compressor.cached_filters, method='input', kind='js')
